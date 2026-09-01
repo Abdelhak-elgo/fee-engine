@@ -26,152 +26,155 @@
 
 ***
 
-## Phase 1 — Domaine complet (4h)
+## Phase 1 — Domaine complet (4h) ✅
 
 ### 1.1 FeeRule interface
 
-* [ ] feat: `domain/rule/FeeRule.java` avec `appliesTo`, `apply`, `name`
-* [ ] Commit: `feat(domain): contrat FeeRule (strategy pattern)`
+* [x] feat: `domain/rule/FeeRule.java` avec `appliesTo`, `apply`, `name`
+* [x] Commit: `feat(domain): contrat FeeRule (strategy pattern)`
 
 ### 1.2 PercentageFeeRule
 
-* [ ] test: `applique_le_taux_configuré`
-* [ ] test: `refuse_null_rate`
-* [ ] test: `nomme_correctement_la_règle`
-* [ ] test: `applique_zéro_sur_transaction_zéro`
-* [ ] feat: `domain/rule/PercentageFeeRule.java`
-* [ ] Commit: `test(domain): specs PercentageFeeRule` puis `feat(domain): PercentageFeeRule`
+* [x] test: `applique_le_taux_configuré`
+* [x] test: `refuse_null_rate`
+* [x] test: `nomme_correctement_la_règle`
+* [x] test: `applique_zéro_sur_transaction_zéro`
+* [x] feat: `domain/rule/PercentageFeeRule.java`
+* [x] Commit: `test(domain): specs PercentageFeeRule` puis `feat(domain): PercentageFeeRule`
 
 ### 1.3 FixedFeeRule
 
-* [ ] test: `applique_le_montant_fixe_sur_canal_configuré`
-* [ ] test: `ignore_si_canal_hors_ensemble`
-* [ ] test: `refuse_ensemble_vide`
-* [ ] feat: `domain/rule/FixedFeeRule.java`
-* [ ] Commit: `test:` puis `feat(domain): FixedFeeRule`
+* [x] test: `applique_le_montant_fixe_sur_canal_configuré`
+* [x] test: `ignore_si_canal_hors_ensemble`
+* [x] test: `refuse_ensemble_vide`
+* [x] feat: `domain/rule/FixedFeeRule.java`
+* [x] Commit: `test:` puis `feat(domain): FixedFeeRule`
 
 ### 1.4 ExemptionRule
 
-* [ ] test: `annule_les_frais_pour_client_exempté`
-* [ ] test: `ignore_si_type_non_exempté`
-* [ ] test: `produit_un_discount_du_montant_total_courant`
-* [ ] feat: `domain/rule/ExemptionRule.java`
-* [ ] Commit: `test:` puis `feat(domain): ExemptionRule`
+* [x] test: `annule_les_frais_pour_client_exempté`
+* [x] test: `ignore_si_type_non_exempté`
+* [x] test: `produit_un_discount_du_montant_total_courant`
+* [x] feat: `domain/rule/ExemptionRule.java`
+* [x] Commit: `test:` puis `feat(domain): ExemptionRule`
 
 ### 1.5 CapRule
 
-* [ ] test: `ignore_si_total_sous_plafond`
-* [ ] test: `plafonne_exactement_au_maximum`
-* [ ] test: `produit_un_discount_égal_au_dépassement`
-* [ ] feat: `domain/rule/CapRule.java`
-* [ ] Commit: `test:` puis `feat(domain): CapRule`
+* [x] test: `ignore_si_total_sous_plafond`
+* [x] test: `plafonne_exactement_au_maximum`
+* [x] test: `produit_un_discount_égal_au_dépassement`
+* [x] feat: `domain/rule/CapRule.java`
+* [x] Commit: `test:` puis `feat(domain): CapRule`
 
 ### 1.6 FeeEngine orchestrateur
 
-* [ ] test: `moteur_sans_règle_retourne_breakdown_vide`
-* [ ] test: `moteur_avec_une_règle_applique_cette_règle`
-* [ ] test: `moteur_respecte_ordre_des_règles`
-* [ ] test: `moteur_applique_exemption_puis_cap`
-* [ ] test: `moteur_gère_client_exempté_avec_cap`
-* [ ] feat: `domain/service/FeeEngine.java` (final class, aucun @Component — D7)
-* [ ] Commit: `test:` puis `feat(domain): FeeEngine (orchestrateur pur)`
+* [x] test: `moteur_sans_règle_retourne_breakdown_vide`
+* [x] test: `moteur_avec_une_règle_applique_cette_règle`
+* [x] test: `moteur_respecte_ordre_des_règles`
+* [x] test: `moteur_applique_exemption_puis_cap`
+* [x] test: `moteur_gère_client_exempté_avec_cap`
+* [x] feat: `domain/service/FeeEngine.java` (final class, aucun @Component — D7)
+* [x] Commit: `test:` puis `feat(domain): FeeEngine (orchestrateur pur)`
 
 ### DoD Phase 1
 
-* [ ] ≥ 20 tests supplémentaires verts
-* [ ] `mvn test` BUILD SUCCESS
-* [ ] Zéro import Spring dans `domain/**`
+* [x] ≥ 20 tests supplémentaires verts
+* [x] `mvn test` BUILD SUCCESS
+* [x] Zéro import Spring dans `domain/**`
 
 ***
 
-## Phase 2 — Application + ports IN (2h)
+## Phase 2 — Application + ports IN (2h) ✅
 
 ### 2.1 CalculateFeesCommand (D8)
 
-* [ ] test: `refuse_amount_null`
-* [ ] test: `refuse_currency_null`
-* [ ] test: `accepte_command_valide`
-* [ ] feat: `application/command/CalculateFeesCommand.java` (non-null seulement)
-* [ ] Commit: `test:` puis `feat(application): CalculateFeesCommand`
+* [x] test: `refuse_amount_null`
+* [x] test: `refuse_currency_null`
+* [x] test: `accepte_command_valide`
+* [x] feat: `application/command/CalculateFeesCommand.java` (non-null seulement)
+* [x] Commit: `test:` puis `feat(application): CalculateFeesCommand`
 
 ### 2.2 CalculateFeesUseCase interface
 
-* [ ] feat: `application/port/in/CalculateFeesUseCase.java`
-* [ ] Commit: `feat(application): port IN CalculateFeesUseCase`
+* [x] feat: `application/port/in/CalculateFeesUseCase.java`
+* [x] Commit: `feat(application): port IN CalculateFeesUseCase`
 
 ### 2.3 CalculateFeesService
 
-* [ ] test (Mockito): `charge_règles_via_provider`
-* [ ] test: `instancie_FeeEngine_avec_règles_courantes`
-* [ ] test: `persiste_calcul_via_repository`
-* [ ] test: `retourne_le_breakdown_calculé`
-* [ ] test: `propage_exception_domaine_vers_appelant`
-* [ ] feat: `application/service/CalculateFeesService.java`
-* [ ] Commit: `test:` puis `feat(application): CalculateFeesService`
+* [x] test (Mockito): `charge_règles_via_provider`
+* [x] test: `instancie_FeeEngine_avec_règles_courantes`
+* [x] test: `persiste_calcul_via_repository`
+* [x] test: `retourne_le_breakdown_calculé`
+* [x] test: `propage_exception_domaine_vers_appelant`
+* [x] feat: `application/service/CalculateFeesService.java`
+* [x] Commit: `test:` puis `feat(application): CalculateFeesService`
 
 ### DoD Phase 2
 
-* [ ] Aucun @RestController importé ici
-* [ ] Clock injecté (testable)
+* [x] Aucun @RestController importé ici
+* [x] Clock injecté (testable)
 
 ***
 
-## Phase 3 — Port OUT règles (1h)
+## Phase 3 — Port OUT règles (1h) ✅
 
 ### 3.1 RuleProvider port
 
-* [ ] feat: `application/port/out/RuleProvider.java` avec `load(): List<FeeRule>` (D1)
-* [ ] Commit: `feat(application): port OUT RuleProvider`
+* [x] feat: `application/port/out/RuleProvider.java` avec `load(): List<FeeRule>` (D1)
+* [x] Commit: `feat(application): port OUT RuleProvider`
 
 ### 3.2 InMemoryRuleProvider
 
-* [ ] test: `retourne_les_4_règles_par_défaut_dans_l_ordre`
-* [ ] test: `règles_avec_valeurs_configurées`
-* [ ] feat: `adapter/out/rule/InMemoryRuleProvider.java` (@Component)
-* [ ] Commit: `test:` puis `feat(adapter): InMemoryRuleProvider`
+* [x] test: `retourne_les_4_règles_par_défaut_dans_l_ordre`
+* [x] test: `règles_avec_valeurs_configurées`
+* [x] feat: `adapter/out/rule/InMemoryRuleProvider.java` (@Component)
+* [x] Commit: `test:` puis `feat(adapter): InMemoryRuleProvider`
 
 ***
 
-## Phase 4 — Adapter IN REST (3h)
+## Phase 4 — Adapter IN REST (3h) ✅
 
 ### 4.1 DTOs
 
-* [ ] feat: `TransactionRequest` (record avec jakarta.validation)
-* [ ] feat: `FeeBreakdownResponse`, `FeeLineResponse`
+* [x] feat: `TransactionRequest` (record avec jakarta.validation)
+* [x] feat: `FeeBreakdownResponse`, `FeeLineResponse`
 * [ ] Commit: `feat(adapter): DTOs REST`
 
-### 4.2 FeeRestMapper
+### 4.2 FeeRestMapper (MapStruct)
 
-* [ ] test: `normalise_currency_en_majuscules`
-* [ ] test: `mappe_breakdown_complet_avec_lignes`
-* [ ] feat: `adapter/in/rest/mapper/FeeRestMapper.java`
-* [ ] Commit: `test:` puis `feat(adapter): FeeRestMapper`
+* [x] test: `normalise_currency_en_majuscules`
+* [x] test: `mappe_breakdown_complet_avec_lignes`
+* [x] feat: `adapter/in/rest/mapper/FeeRestMapper.java`
+* [x] chore: MapStruct 1.6.3 + lombok-mapstruct-binding dans pom.xml
+* [ ] Commit: `test:` puis `feat(adapter): FeeRestMapper MapStruct`
 
 ### 4.3 FeeController
 
-* [ ] feat: `adapter/in/rest/FeeController.java` (dépend de CalculateFeesUseCase interface)
+* [x] feat: `adapter/in/rest/FeeController.java` (dépend de CalculateFeesUseCase interface)
+* [x] feat: `config/ApplicationConfig.java` (bean CalculateFeesUseCase + Clock)
 * [ ] Commit: `feat(adapter): FeeController`
 
 ### 4.4 GlobalExceptionHandler
 
-* [ ] test @WebMvcTest: `retourne_400_ProblemDetail_pour_InvalidAmount`
-* [ ] test: `retourne_400_avec_liste_errors_pour_validation`
-* [ ] test: `retourne_400_pour_CurrencyMismatch`
-* [ ] test: `Content-Type_application/problem+json`
-* [ ] feat: `adapter/in/rest/error/GlobalExceptionHandler.java`
+* [x] test @WebMvcTest: `retourne_400_ProblemDetail_pour_InvalidAmount`
+* [x] test: `retourne_400_avec_liste_errors_pour_validation`
+* [x] test: `retourne_400_pour_CurrencyMismatch`
+* [x] test: `Content-Type_application/problem+json`
+* [x] feat: `adapter/in/rest/error/GlobalExceptionHandler.java`
 * [ ] Commit: `test:` puis `feat(adapter): GlobalExceptionHandler (RFC 7807)`
 
 ### 4.5 Tests @WebMvcTest FeeController
 
-* [ ] test: `POST_calculate_cas_nominal_200`
-* [ ] test: `POST_calculate_validation_échouée_400`
-* [ ] test: `POST_calculate_devise_inconnue_400`
+* [x] test: `POST_calculate_cas_nominal_200`
+* [x] test: `POST_calculate_validation_échouée_400`
+* [x] test: `POST_calculate_devise_inconnue_400`
 * [ ] Commit: `test(adapter): FeeController @WebMvcTest`
 
 ### DoD Phase 4
 
-* [ ] Swagger UI accessible `/swagger-ui.html`
-* [ ] Controller n'importe pas `CalculateFeesService`
+* [x] Swagger UI accessible `/swagger-ui.html` (à vérifier manuellement au boot)
+* [x] Controller n'importe pas `CalculateFeesService` (dépend de CalculateFeesUseCase)
+* [x] 95 tests verts (mvn test) — +9 tests Phase 4
 
 ***
 
