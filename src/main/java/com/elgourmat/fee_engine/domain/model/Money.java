@@ -35,6 +35,15 @@ public record Money(BigDecimal amount, Currency currency) {
         return new Money(this.amount.add(other.amount), this.currency);
     }
 
+    public Money subtract(Money other) {
+        requireSameCurrency(other);
+        if (other.isGreaterThan(this)) {
+            throw new InvalidAmountException(
+                    "Résultat négatif interdit : %s - %s".formatted(this.amount, other.amount));
+        }
+        return new Money(this.amount.subtract(other.amount), this.currency);
+    }
+
     public Money multiply(BigDecimal factor) {
         return new Money(this.amount.multiply(factor), this.currency);
     }

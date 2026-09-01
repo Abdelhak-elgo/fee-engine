@@ -47,6 +47,27 @@ class MoneyTest {
     }
 
     @Test
+    void soustrait_deux_montants_de_meme_devise() {
+        Money result = Money.of(new BigDecimal("10.00"), Currency.MAD)
+                .subtract(Money.of(new BigDecimal("3.50"), Currency.MAD));
+        assertEquals(Money.of(new BigDecimal("6.50"), Currency.MAD), result);
+    }
+
+    @Test
+    void refuse_soustraction_produisant_negatif() {
+        Money petit = Money.of(new BigDecimal("5.00"), Currency.MAD);
+        Money grand = Money.of(new BigDecimal("10.00"), Currency.MAD);
+        assertThrows(InvalidAmountException.class, () -> petit.subtract(grand));
+    }
+
+    @Test
+    void refuse_soustraction_de_devises_differentes() {
+        Money mad = Money.of(new BigDecimal("10.00"), Currency.MAD);
+        Money eur = Money.of(new BigDecimal("5.00"), Currency.EUR);
+        assertThrows(CurrencyMismatchException.class, () -> mad.subtract(eur));
+    }
+
+    @Test
     void multiplie_par_un_taux_et_arrondit() {
         Money result = Money.of(new BigDecimal("100.00"), Currency.MAD)
                 .multiply(new BigDecimal("0.015"));
