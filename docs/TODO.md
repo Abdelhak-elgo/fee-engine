@@ -178,57 +178,65 @@
 
 ***
 
-## Phase 5 — Persistance (3.5h)
+## Phase 5 — Persistance (3.5h) ✅
 
 ### 5.1 Dépendances Maven
 
-* [ ] feat: spring-boot-starter-data-jpa, flyway-core, flyway-database-postgresql, postgresql
-* [ ] feat: testcontainers-postgresql (test), hypersistence-utils-hibernate-63
+* [x] feat: spring-boot-starter-data-jpa, spring-boot-flyway, flyway-core, flyway-database-postgresql, postgresql
+* [x] feat: spring-boot-testcontainers, testcontainers-postgresql, testcontainers-junit-jupiter (test scope) — hypersistence-utils skipped (Hibernate 7 native @JdbcTypeCode)
 * [ ] Commit: `chore(deps): persistance Postgres + Flyway + Testcontainers`
 
 ### 5.2 Migration Flyway V1 (D4)
 
-* [ ] feat: `src/main/resources/db/migration/V1__init.sql` avec payload JSONB versionné
+* [x] feat: `src/main/resources/db/migration/V1__init.sql` avec payload JSONB versionné
 * [ ] Commit: `feat(persistence): migration V1 fee_calculation`
 
 ### 5.3 FeeCalculationEntity JPA
 
-* [ ] feat: `adapter/out/persistence/jpa/FeeCalculationEntity.java` (immuable, JsonType)
-* [ ] feat: `adapter/out/persistence/jpa/FeeCalculationJpaRepository.java`
+* [x] feat: `adapter/out/persistence/jpa/FeeCalculationEntity.java` (immuable-ish, @JdbcTypeCode SqlTypes.JSON)
+* [x] feat: `adapter/out/persistence/jpa/FeeCalculationJpaRepository.java`
 * [ ] Commit: `feat(persistence): entités JPA`
 
 ### 5.4 Port OUT FeeCalculationRepository
 
-* [ ] feat: `application/port/out/FeeCalculationRepository.java`
+* [x] feat: `application/port/out/FeeCalculationRepository.java` (livré en Phase 2)
 * [ ] Commit: `feat(application): port OUT FeeCalculationRepository`
 
 ### 5.5 FeeCalculationRecord (D6)
 
-* [ ] feat: `application/model/FeeCalculationRecord.java` (déplacé de domain per D6)
+* [x] feat: `application/model/FeeCalculationRecord.java` (livré en Phase 2)
 * [ ] Commit: `feat(application): FeeCalculationRecord (audit)`
 
 ### 5.6 PayloadV1 versioning (D4)
 
-* [ ] test: `refuse_version_différente_de_1`
-* [ ] test: `deserialise_payload_v1_correctement`
-* [ ] test: `throw_sur_version_inconnue`
-* [ ] feat: `adapter/out/persistence/payload/PayloadV1.java` + `FeeLineJson.java`
-* [ ] feat: mapper `FeeBreakdown ↔ PayloadV1`
+* [x] test: `refuse_version_différente_de_1`
+* [x] test: `deserialise_payload_v1_correctement`
+* [x] test: `throw_sur_version_inconnue`
+* [x] feat: `adapter/out/persistence/payload/PayloadV1.java` + `FeeLineJson.java`
+* [x] feat: `adapter/out/persistence/payload/UnknownPayloadVersionException.java`
 * [ ] Commit: `test:` puis `feat(persistence): payload JSONB versionné`
 
 ### 5.7 FeeCalculationPersistenceAdapter
 
-* [ ] feat: `adapter/out/persistence/FeeCalculationPersistenceAdapter.java`
-* [ ] feat: `adapter/out/persistence/mapper/FeeCalculationEntityMapper.java`
+* [x] feat: `adapter/out/persistence/FeeCalculationPersistenceAdapter.java`
+* [x] feat: `adapter/out/persistence/mapper/FeeCalculationEntityMapper.java`
+* [x] chore: retire `InMemoryFeeCalculationRepository` (remplacé par l'adapter JPA)
 * [ ] Commit: `feat(adapter): FeeCalculationPersistenceAdapter`
 
-### 5.8 Tests @DataJpaTest + Testcontainers (D10)
+### 5.8 Tests Testcontainers (@SpringBootTest, D10)
 
-* [ ] test: config Testcontainers reuse=true (`~/.testcontainers.properties`)
-* [ ] test: `sauvegarde_puis_lecture_payload_json_structuré`
-* [ ] test: `migration_flyway_appliquée`
-* [ ] test: `version_1_dé-sérialise_OK`
-* [ ] Commit: `test(persistence): @DataJpaTest avec Testcontainers`
+* [x] test: `AbstractPostgresIntegrationTest` — Testcontainer Postgres 16.2 (`.withReuse(true)`)
+* [x] test: `sauvegarde_puis_lecture_payload_json_structuré`
+* [x] test: `migration_flyway_appliquée`
+* [x] test: payload persisté comme JSONB natif Postgres
+* [ ] Commit: `test(persistence): tests Testcontainers`
+
+### DoD Phase 5
+
+* [x] `docker-compose.yml` — Postgres dédié fee-engine sur port 5433
+* [x] Flyway V1 appliquée + validation Hibernate OK
+* [x] 102 tests verts (`mvn test`) — +7 tests Phase 5
+* [x] FeeCalculationRecord persistée en JSONB versionné
 
 ***
 
